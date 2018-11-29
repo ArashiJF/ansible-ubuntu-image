@@ -1,5 +1,5 @@
 ---
-url: httpd://172.16.5.221/identity/v3
-name: admin
+url: http://172.16.5.205/identity/v3
+user: admin
 pass: secret
-local_ssh_pubkey: id_rsa.pub
+local_ssh_pubkey: id_rsa
