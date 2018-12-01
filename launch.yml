@@ -14,35 +14,28 @@
       msg="ubuntu was downloaded"
      when: get_ubuntu|changed
 
-   #- name: Create ssh key
-   #  command: ssh-keygen -t rsa -b 1024 -G ./id_rsa
-   #  register: get_key
-   
-   #- debug:
-   #   msg="key already exists"
-   #  when: get_key|changed
-   
-   #- name: Create keypair
-   #  os_keypair:
-   #   name: mykey
-   #   auth:
-   #     auth_url: "{{ url }}"
-   #     username: "{{ user }}"
-   #     password: "{{ pass }}"
-   #     project_name: admin
-   #   state: present
-   #   public_key_file: ./mykey.pem
+   - name: Create keypair
+     os_keypair:
+      name: mykey
+      auth:
+        auth_url: "{{ url }}"
+        username: "{{ user }}"
+        password: "{{ pass }}"
+        project_name: "{{ projectname }}"
+      state: present
 
-
-   #- name: upload linux image to glance
-   #  os_image:
-   #   auth: 
-   #     auth_url: "{{ url }}"
-   #     username: "{{ user }}"
-   #     password: "{{ pass }}"
-   #   name: ubuntu_xenial
-   #   is_public: yes
-   #   filename: ./images/xenial-server-cloudimg-amd64-disk1.img
+   - name: upload linux image to glance
+     os_image:
+      auth: 
+        auth_url: "{{ url }}"
+        username: "{{ user }}"
+        password: "{{ pass }}"
+        project_name: "{{ projectname }}"
+      name: ubuntu_xenial
+      container_format: bare
+      disk_format: qcow2
+      is_public: yes
+      filename: ./images/xenial-server-cloudimg-amd64-disk1.img
     
    
    - name: launch an instance with ubuntu
@@ -51,11 +44,10 @@
         auth_url: "{{ url }}"
         username: "{{ user }}"
         password: "{{ pass }}"
-        project_name: admin
+        project_name: "{{ projectname }}"
       image: ubuntu_xenial
-      name: small_server
-      key_name: ./mykey.pem
-      timeout: 200
+      name: server_prueba
+      key_name: mykey
       flavor: 2
       state: present
       auto_ip: yes

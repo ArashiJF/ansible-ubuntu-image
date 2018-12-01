@@ -1,5 +1,6 @@
 ---
-url: http://172.16.5.205/identity/v3
+url: http://192.168.0.105/identity/v3
 user: admin
 pass: secret
-local_ssh_pubkey: id_rsa
+projectname: admin
+nnic: b89cd3d0-7fd5-442f-b9e1-ec0562214233
