@@ -46,8 +46,8 @@
         password: "{{ pass }}"
         project_name: "{{ projectname }}"
       image: ubuntu_xenial
-      name: server_prueba
+      name: test
       key_name: mykey
-      flavor: 2
+      flavor: 2 
       state: present
       auto_ip: yes
